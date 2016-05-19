@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<!-- Informació Meta -->
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Hector Villarreal Ortega">
+	<!-- Enllaç a l'arxiu CSS Extern -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mainstyle.css') }}"/>
+	<!-- favicon -->
+	<!--{{ url_for('static', filename='img/favicon.ico') }} -->
+	<link href="{{ url_for('static', filename='img/webapp.ico') }}" rel="icon" type="image/x-icon" />
+	<!-- 	Inicialitcem scripts de javascript que utilitzarem -->
+	<script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	
+
+	<!-- Títol de la pàgina -->
+	
+	<title> WebApp </title>
+</head>
+<body>
+	<header>
+	
+		<!-- HEM DE POSAR UN LOGO -->
+		
+		<!-- DEFINIM EL NAVEGADOR DE LA PAGINA -->
+		
+		<ul class="topnav">
+		<!--   <div id=logo><img alt="logoEtseib" src="img/Logotip_ETSEIB.svg"></img> </div> -->
+		  <li><button onclick="changeSection('0')">Home</button></li>
+		  <li><button onclick="changeSection('1')">Our project</button></li>
+		  <li><button onclick="changeSection('2')">Contact</button></li>
+		  <li><button onclick="changeSection('3')">About us</button></li>
+<!-- 		  <li class="icon">
+			<a href="javascript:void(0);" style="font-size:15px;" onclick="slideOpen()">☰</a>
+		  </li> -->
+		</ul>
+	</header>
+<script>
+	function slideOpen(){
+    document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+	}
+					
+</script>
+		<!-- PER TAL DE FER MES RESPONSIVE LA PAGINA I QUE A GOOGLE LI AGRADI MÉS, HO DEFINIM PER SECCIONS 
+		DINTRE D'AQUESTES TINDREM ARTICLES QUE SEGONS EL TAMANY DE PANTALLA CAURAN PER COLUMNES-->
+	<section class="container" id="Summary">
+		<article class="item" id="Home">
+			<h1>Home</h1>
+			<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sed laoreet sem, vel hendrerit dui. Suspendisse nulla ex, luctus id risus at, hendrerit dictum mi. Proin nec efficitur nibh, nec fermentum purus.</p>
+			<div class="imatge">
+			<img src="{{ url_for('static', filename='img/Logotip_ETSEIB.svg') }}" style="height:200px; width:200px;">
+			</div>
+		</article>
+	</section>
+	
+	
+	<section class="container active" id="ourProject">
+<!-- 		<article class="item1" id="quisom">
+			<h1>quisom</h1>
+			<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sed laoreet sem, vel hendrerit dui. Suspendisse nulla ex, luctus id risus at, hendrerit dictum mi. Proin nec efficitur nibh, nec fermentum purus.</p>
+			<div class="imatge">
+			<img src="img/jack.jpg" style="width:100%;height:100%;">
+			</div>
+			FUNCION TATI para Slider
+			function(event,ui){
+			$(    ).val(ui.value[   ] + ui.value[   ])
+			}
+		</article> -->
+		<article class="item1" id="inputs">
+			<h1>Our Project</h1>
+			<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sed laoreet sem, vel hendrerit dui. Suspendisse nulla ex, luctus id risus at, hendrerit dictum mi. Proin nec efficitur nibh, nec fermentum purus.</p>
+			 
+			<fieldset>
+			<form action="/filtre" method="post">
+			<!-- <input type="submit" value="Refrescar Gràfic"><br> -->
+			<button id="go" onclick="genGraph()">Refrescar Gràfic</button>
+			<p>Selecciona el curs</p>
+				<select name="curs">
+				  <option  type="checkbox" value="2010">2010</option>
+				  <option  type="checkbox" value="2011">2011</option>
+				  <option  type="checkbox" value="2012">2012</option>
+				  <option  type="checkbox" value="2013">2013</option>
+				  <option  type="checkbox" value="2014">2014</option>
+				  <option  type="checkbox" value="2015">2015</option>
+				  <option  type="checkbox" value="2016">2016</option>	
+				</select>
+				<hr>
+			<p> Selecciona el quatrimestre </p>
+				<select name="quad">
+					<option  type="checkbox" value="1">Tardor</option>
+					<option  type="checkbox" value="2">Primavera</option>
+				</select><hr>
+				<input type="radio" name="gender" value="both" checked> Tots<br>
+				<input type="radio" name="gender" value="male">Homes<br>
+				<input type="radio" name="gender" value="female"> Dones
+			</form>
+			</fieldset>
+			<p><a href="{{ url_for('static', filename='grafics2016.html') }}" target="iframe_a">W3Schools.com</a></p>
+			<!-- AQUI ESTA EL CONTENIDOR DEL GRAFIC -->
+		</article>
+		<article class="item2" id="grafic">
+		<iframe frameborder='0' name="iframe_a" noresize='noresize' style='position: absolute; background: transparent; width: 80%; height:100%;' src="{{ iframe }}" frameborder="0"></iframe>
+			<!-- <div class="chart"></div> -->
+		</article>
+	</section>
+<section class="container" id="container3">
+	<article class="item" id="contact">
+		<h1>Contact</h1>
+			<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sed laoreet sem, vel hendrerit dui. Suspendisse nulla ex, luctus id risus at, hendrerit dictum mi. Proin nec efficitur nibh, nec fermentum purus.</p>
+		<form onsubmit="alert('I will contact you asap!!')" action="" id="contact">
+				<fieldset>	
+					<legend>Leave a comment</legend>
+					<label>Name:</label>
+					<input type="text" name="name" value="" placeholder="name"> </input>
+					<br/>
+					<label>Email:</label> 
+					<input type="email" name="email" value="" placeholder="youremail@domain.com" required="required"></input> 
+					<br/>
+					<label>Comment:</label><br>
+					<textarea name="comment" id="comment" placeholder="leave your comment here..."></textarea>
+					<br/>
+					<input type="submit" value="Send" ></input>
+				</fieldset>
+			</form>
+	</article>
+</section>
+<section class="container" id="container4">
+	<article class="item" id="aboutus">
+		<h1>About us</h1>
+			<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sed laoreet sem, vel hendrerit dui. Suspendisse nulla ex, luctus id risus at, hendrerit dictum mi. Proin nec efficitur nibh, nec fermentum purus.</p>
+	</article>
+</section>
+	
+	
+	
+	<footer>
+	  <p>Copyright &copy; 2016 HVO</p> 
+	</footer>
+		
+</body>
+</html>

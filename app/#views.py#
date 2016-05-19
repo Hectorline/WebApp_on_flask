@@ -1,0 +1,17 @@
+from flask import render_template
+from app import app
+
+@app.route('/')
+@app.route('/index')
+
+def index():
+	return render_template('index.html')
+
+@app.route('/grafics')
+
+def grafics():
+    ass = ['C1', 'MF', 'FI']
+    return render_template('grafics.html', ass = ass)
+
+if __name__ == '__main__':
+	app.run()
